@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { Box, Divider, Drawer, Typography, useMediaQuery } from "@mui/material";
 import { ChartBar as ChartBarIcon } from "../icons/chart-bar";
-import { Cog as CogIcon } from "../icons/cog";
 import { UserAdd as UserAddIcon } from "../icons/user-add";
+import InventoryIcon from "@mui/icons-material/Inventory";
 import { NavItem } from "./nav-item";
 
 const items = [
@@ -19,7 +19,7 @@ const items = [
     icon: <UserAddIcon fontSize="small" />,
     title: "Clientes",
   },
-  { href: "/products", icon: <CogIcon fontSize="small" />, title: "Productos" },
+  { href: "/products", icon: <InventoryIcon fontSize="small" />, title: "Productos" },
 ];
 
 export const DashboardSidebar = (props) => {
