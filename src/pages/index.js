@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { TOKEN } from "src/Config/Constants";
 import Cookies from "js-cookie";
 import { InputField } from "src/components/FormFields";
+import { setToken } from "src/Api/TokenApi";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -39,6 +40,7 @@ export default function LoginForm() {
     //     toast.success("Inicio de sesion Correcto");
     //     Cookies.set(TOKEN, response.jwt);
     //     router.push("/dashboard");
+    //     setToken(response.jwt);
     //   } else {
     //     toast.error("Usuario incorrecto");
     //   }
