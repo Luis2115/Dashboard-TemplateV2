@@ -24,6 +24,10 @@ import MenuPopover from "../components/menupopover/MenuPopover";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+import { TOKEN } from "../Config/Constants";
+import { removeToken } from "src/Api/TokenApi";
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -50,6 +54,7 @@ const MENU_OPTIONS = [
 
 export const DashboardNavbar = (props) => {
   const { onSidebarOpen, ...other } = props;
+  const router = useRouter();
 
   const anchorRef = useRef(null);
 
@@ -61,6 +66,12 @@ export const DashboardNavbar = (props) => {
 
   const handleClose = () => {
     setOpen(null);
+  };
+
+  const logout = () => {
+    Cookies.remove(TOKEN);
+    removeToken();
+    router.reload();
   };
 
   return (
@@ -163,7 +174,7 @@ export const DashboardNavbar = (props) => {
 
             <Divider sx={{ borderStyle: "dashed" }} />
 
-            <MenuItem onClick={handleClose} sx={{ m: 1 }}>
+            <MenuItem onClick={logout} sx={{ m: 1 }}>
               Cerrar sesión
             </MenuItem>
           </MenuPopover>
