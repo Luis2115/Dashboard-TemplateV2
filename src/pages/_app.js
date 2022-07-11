@@ -3,9 +3,8 @@ import { CacheProvider } from "@emotion/react";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { CssBaseline } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
 import { createEmotionCache } from "../utils/create-emotion-cache";
-import { theme } from "../theme";
+import { ToggleColorMode } from "../theme";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
@@ -23,7 +22,7 @@ const App = (props) => {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <ThemeProvider theme={theme}>
+        <ToggleColorMode>
           <CssBaseline />
           {getLayout(<Component {...pageProps} />)}
           <ToastContainer
@@ -37,7 +36,7 @@ const App = (props) => {
             draggable
             pauseOnHover
           />
-        </ThemeProvider>
+        </ToggleColorMode>
       </LocalizationProvider>
     </CacheProvider>
   );

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import PropTypes from "prop-types";
 import NextLink from "next/link";
 import styled from "@emotion/styled";
@@ -17,7 +17,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { alpha } from "@mui/material/styles";
+import { alpha, useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Bell as BellIcon } from "../icons/bell";
 import MenuPopover from "../components/menupopover/MenuPopover";
@@ -28,6 +28,9 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { TOKEN } from "../Config/Constants";
 import { removeToken } from "src/Api/TokenApi";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { ColorModeContext } from "src/theme";
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -71,8 +74,11 @@ export const DashboardNavbar = (props) => {
   const logout = () => {
     Cookies.remove(TOKEN);
     removeToken();
-    router.reload();
+    router.push("/");
   };
+
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
 
   return (
     <>
@@ -108,6 +114,20 @@ export const DashboardNavbar = (props) => {
           </IconButton>
 
           <Box sx={{ flexGrow: 1 }} />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              bgcolor: "background.default",
+              color: "text.primary",
+              borderRadius: 1,
+            }}
+          >
+            Tema {theme.palette.mode === "light" ? "Claro" : "Oscuro"}
+            <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+              {theme.palette.mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
+          </Box>
           <Tooltip title="Notifications">
             <IconButton sx={{ ml: 1 }}>
               <Badge badgeContent={4} color="primary" variant="dot">

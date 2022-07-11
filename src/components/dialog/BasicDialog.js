@@ -22,10 +22,10 @@ export default function BasicDialog(props) {
       <DialogTitle id="responsive-dialog-title">{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={handleClose}>
+        <Button color="primary" variant="contained" autoFocus onClick={handleClose}>
           Cancelar
         </Button>
-        <Button onClick={actionAccept} autoFocus>
+        <Button color="primary" variant="contained" onClick={actionAccept} autoFocus>
           Aceptar
         </Button>
       </DialogActions>
